@@ -13,8 +13,9 @@ count++;
 if (count==12)
 pthread_cond_signal(&threshold);
 pthread_mutex_unlock(&lock);
-pthread_exit(NULL);
+
 }
+pthread_exit(NULL);
 }
 void *increment1()
 	{
@@ -31,12 +32,17 @@ pthread_exit(NULL);
 int main()
 {
 pthread_attr_t join;
+pthread_attr_init(&join);
+pthread_mutex_init(&lock,NULL);
+pthread_cond_init(&threshold,NULL);
 pthread_t charan,varun;
 pthread_attr_setdetachstate(&join,PTHREAD_CREATE_JOINABLE);
-pthread_create(&charan,&join,increment,NULL);
 pthread_create(&varun,&join,increment1,NULL);
+pthread_create(&charan,&join,increment,NULL);
+printf("cahran count %d",count);
 pthread_join(charan,NULL);
 pthread_join(varun,NULL);
+printf ("charan count %d",count);
 pthread_cond_destroy(&threshold);
 pthread_mutex_destroy(&lock);
 pthread_attr_destroy(&join);
