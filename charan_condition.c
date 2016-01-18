@@ -39,7 +39,6 @@ pthread_t charan,varun;
 pthread_attr_setdetachstate(&join,PTHREAD_CREATE_JOINABLE);
 pthread_create(&varun,&join,increment1,NULL);
 pthread_create(&charan,&join,increment,NULL);
-printf("cahran count %d",count);
 pthread_join(charan,NULL);
 pthread_join(varun,NULL);
 printf ("charan count %d",count);
