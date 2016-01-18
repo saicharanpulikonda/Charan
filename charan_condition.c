@@ -41,7 +41,7 @@ pthread_create(&varun,&join,increment1,NULL);
 pthread_create(&charan,&join,increment,NULL);
 pthread_join(charan,NULL);
 pthread_join(varun,NULL);
-printf ("charan count %l",count);
+printf ("charan count %d",count);
 pthread_cond_destroy(&threshold);
 pthread_mutex_destroy(&lock);
 pthread_attr_destroy(&join);
